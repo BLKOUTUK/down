@@ -598,6 +598,153 @@ export default function ProfilePage() {
             </div>
           )}
 
+          {/* Intimacy Tab */}
+          {activeTab === 'intimacy' && (
+            <div className="space-y-6">
+              <div className="bg-pink-500/10 border border-pink-500/30 rounded-xl p-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <Flame className="h-6 w-6 text-pink-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-bold text-pink-400">Sex Positive Space</h3>
+                    <p className="text-sm text-gray-400">This information helps you find compatible connections. All fields are optional and only visible to other members.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Hosting</label>
+                  <select
+                    value={formData.hosting_preference}
+                    onChange={(e) => setFormData(f => ({ ...f, hosting_preference: e.target.value }))}
+                    className="w-full bg-card border border-gold/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold/50"
+                  >
+                    <option value="">Select</option>
+                    {HOSTING_OPTIONS.map(opt => (
+                      <option key={opt.value} value={opt.value}>{opt.emoji} {opt.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Position</label>
+                  <select
+                    value={formData.sexual_position}
+                    onChange={(e) => setFormData(f => ({ ...f, sexual_position: e.target.value }))}
+                    className="w-full bg-card border border-gold/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold/50"
+                  >
+                    <option value="">Select</option>
+                    {POSITION_OPTIONS.map(opt => (
+                      <option key={opt.value} value={opt.value}>{opt.emoji} {opt.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Sex & Me <span className="text-gold">(Pick up to 3)</span>
+                </label>
+                <p className="text-xs text-gray-500 mb-3">How would you describe yourself intimately?</p>
+                <div className="flex flex-wrap gap-2">
+                  {SEX_AND_ME_OPTIONS.map(option => (
+                    <button
+                      key={option}
+                      onClick={() => toggleSexAndMe(option)}
+                      disabled={!formData.sex_and_me.includes(option) && formData.sex_and_me.length >= 3}
+                      className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                        formData.sex_and_me.includes(option)
+                          ? 'bg-pink-500 text-white'
+                          : formData.sex_and_me.length >= 3
+                            ? 'bg-card border border-gray-700 text-gray-600 cursor-not-allowed'
+                            : 'bg-card border border-pink-500/30 text-gray-400 hover:border-pink-500/60'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Sex & You <span className="text-gold">(Pick up to 3)</span>
+                </label>
+                <p className="text-xs text-gray-500 mb-3">What are you looking for in a partner?</p>
+                <div className="flex flex-wrap gap-2">
+                  {SEX_AND_YOU_OPTIONS.map(option => (
+                    <button
+                      key={option}
+                      onClick={() => toggleSexAndYou(option)}
+                      disabled={!formData.sex_and_you.includes(option) && formData.sex_and_you.length >= 3}
+                      className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                        formData.sex_and_you.includes(option)
+                          ? 'bg-purple text-white'
+                          : formData.sex_and_you.length >= 3
+                            ? 'bg-card border border-gray-700 text-gray-600 cursor-not-allowed'
+                            : 'bg-card border border-purple/30 text-gray-400 hover:border-purple/60'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-gold/20">
+                <h3 className="text-lg font-bold text-gold mb-4 flex items-center gap-2">
+                  <Shield className="h-5 w-5" />
+                  Sexual Health
+                </h3>
+                
+                <div className="bg-card/50 rounded-xl p-4 mb-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-gray-300">Last Checkup</p>
+                      <p className={`text-sm ${getHealthCheckupStatus().color || 'text-gray-500'}`}>
+                        {getHealthCheckupStatus().message}
+                      </p>
+                    </div>
+                    {formData.last_health_checkup && (
+                      <div className="text-right">
+                        <p className="text-gold font-semibold">
+                          {new Date(formData.last_health_checkup).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <Calendar className="h-4 w-4 inline mr-1" />
+                    Date of Last Checkup
+                  </label>
+                  <input
+                    type="date"
+                    value={formData.last_health_checkup}
+                    onChange={(e) => setFormData(f => ({ ...f, last_health_checkup: e.target.value }))}
+                    max={new Date().toISOString().split('T')[0]}
+                    className="w-full bg-card border border-gold/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold/50"
+                  />
+                </div>
+
+                <div className="mt-4 p-4 bg-teal-500/10 border border-teal-500/30 rounded-xl">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="h-5 w-5 text-teal-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-teal-400 font-medium">Regular testing is self-care</p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        We recommend getting tested every 3 months if sexually active. 
+                        Find your nearest clinic at <a href="https://www.tht.org.uk/centres-and-services" target="_blank" rel="noopener noreferrer" className="text-teal-400 underline">THT</a> or 
+                        <a href="https://www.nhs.uk/service-search/sexual-health" target="_blank" rel="noopener noreferrer" className="text-teal-400 underline ml-1">NHS Sexual Health</a>.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Preferences Tab */}
           {activeTab === 'preferences' && (
             <div className="space-y-6">

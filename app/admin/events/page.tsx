@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Crown, ChevronLeft, Plus, Calendar, MapPin, Users, Trash2, Edit, Loader2, Send, Eye, Copy, Share2, Bell, Mail, MessageSquare } from 'lucide-react';
+import { Crown, ChevronLeft, Plus, Calendar, MapPin, Users, Trash2, Edit, Loader2, Send, Eye, Copy, Share2, Bell, Mail, MessageSquare, Handshake, Building2, ExternalLink } from 'lucide-react';
 import { createClient } from '@/lib/supabase-browser';
 
 const EVENT_TYPES = [
@@ -14,6 +14,14 @@ const EVENT_TYPES = [
   { value: 'SOCIAL', label: 'Social Event', emoji: '🍸' },
   { value: 'WELLNESS', label: 'Wellness', emoji: '🧘' },
   { value: 'CULTURAL', label: 'Cultural Outing', emoji: '🎭' }
+];
+
+const PARTNER_TYPES = [
+  { value: 'lifestyle', label: 'Lifestyle', color: 'bg-pink-500' },
+  { value: 'voluntary', label: 'Voluntary Sector', color: 'bg-green-500' },
+  { value: 'cultural', label: 'Cultural', color: 'bg-purple-500' },
+  { value: 'health', label: 'Health & Wellbeing', color: 'bg-teal-500' },
+  { value: 'advocacy', label: 'Advocacy', color: 'bg-orange-500' }
 ];
 
 const PROMO_TEMPLATES = {
@@ -47,15 +55,35 @@ const PROMO_TEMPLATES = {
   }
 };
 
+interface Partner {
+  id: string;
+  name: string;
+  logo_url?: string;
+  website?: string;
+  description?: string;
+  partner_type: string;
+  instagram?: string;
+}
+
 export default function AdminEventsPage() {
   const [events, setEvents] = useState<any[]>([]);
+  const [partners, setPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showPromoModal, setShowPromoModal] = useState<any>(null);
   const [showRsvpList, setShowRsvpList] = useState<any>(null);
+  const [showPartnerModal, setShowPartnerModal] = useState(false);
   const [rsvpUsers, setRsvpUsers] = useState<any[]>([]);
   const [promoMessage, setPromoMessage] = useState({ subject: '', body: '' });
   const [sendingPromo, setSendingPromo] = useState(false);
+  const [newPartner, setNewPartner] = useState({
+    name: '',
+    logo_url: '',
+    website: '',
+    description: '',
+    partner_type: 'lifestyle',
+    instagram: ''
+  });
   const [newEvent, setNewEvent] = useState({
     title: '',
     description: '',
@@ -65,10 +93,12 @@ export default function AdminEventsPage() {
     address: '',
     max_capacity: '',
     price: '0',
-    early_bird_price: '',
-    early_bird_deadline: '',
-    promo_image_url: '',
-    is_featured: false
+    is_partnership: false,
+    partner_id: '',
+    partner_name: '',
+    partner_logo_url: '',
+    partner_website: '',
+    partner_type: ''
   });
   const router = useRouter();
   const supabase = createClient();

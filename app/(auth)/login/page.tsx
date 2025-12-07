@@ -28,14 +28,23 @@ export default function LoginPage() {
         .eq('email', email.toLowerCase())
         .single();
 
-      if (fetchError || !user) {
-        throw new Error('Invalid email or password');
+      if (fetchError) {
+        console.error('Fetch error:', fetchError);
+        throw new Error('Database error: ' + fetchError.message);
+      }
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      if (!user.password) {
+        throw new Error('No password set for this account');
       }
 
       // Verify password
       const isValid = await bcrypt.compare(password, user.password);
       if (!isValid) {
-        throw new Error('Invalid email or password');
+        throw new Error('Password mismatch');
       }
 
       // Store user session in localStorage

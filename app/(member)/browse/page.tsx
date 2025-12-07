@@ -8,9 +8,13 @@ import { createClient } from '@/lib/supabase-browser';
 import type { User } from '@/lib/types';
 import { calculateDistance, formatDistance } from '@/lib/distance';
 
+interface ProfileWithDistance extends User {
+  distance?: number | null;
+}
+
 export default function BrowsePage() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [profiles, setProfiles] = useState<User[]>([]);
+  const [profiles, setProfiles] = useState<ProfileWithDistance[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [userLocation, setUserLocation] = useState<{ lat: number; lon: number } | null>(null);

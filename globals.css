@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 10 10% 4%;
+    --foreground: 48 100% 96%;
+    --card: 10 10% 8%;
+    --card-foreground: 48 100% 96%;
+    --popover: 10 10% 8%;
+    --popover-foreground: 48 100% 96%;
+    --primary: 43 74% 66%;
+    --primary-foreground: 10 10% 4%;
+    --secondary: 266 100% 35%;
+    --secondary-foreground: 48 100% 96%;
+    --muted: 10 10% 15%;
+    --muted-foreground: 48 20% 70%;
+    --accent: 266 100% 35%;
+    --accent-foreground: 48 100% 96%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 48 100% 96%;
+    --border: 10 10% 20%;
+    --input: 10 10% 20%;
+    --ring: 43 74% 66%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .bg-luxe-gradient {
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #4B0082 100%);
+  }
+  
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+  }
+  
+  .text-gold {
+    color: #D4AF37;
+  }
+  
+  .border-gold {
+    border-color: #D4AF37;
+  }
+  
+  .afro-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='https://i.pinimg.com/736x/89/76/0a/89760a87e41fa7ef06a562a1327018d0.jpg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}

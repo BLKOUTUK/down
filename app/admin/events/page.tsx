@@ -127,7 +127,17 @@ export default function AdminEventsPage() {
     }
 
     await fetchEvents();
+    await fetchPartners();
     setLoading(false);
+  };
+
+  const fetchPartners = async () => {
+    const { data } = await supabase
+      .from('partners')
+      .select('*')
+      .eq('is_active', true)
+      .order('name');
+    setPartners(data || []);
   };
 
   const fetchEvents = async () => {
@@ -161,6 +171,45 @@ export default function AdminEventsPage() {
     setEvents(eventsWithRsvps);
   };
 
+  const handleCreatePartner = async () => {
+    if (!newPartner.name || !newPartner.partner_type) {
+      alert('Please fill in partner name and type');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('partners')
+      .insert({
+        name: newPartner.name,
+        logo_url: newPartner.logo_url || null,
+        website: newPartner.website || null,
+        description: newPartner.description || null,
+        partner_type: newPartner.partner_type,
+        instagram: newPartner.instagram || null
+      });
+
+    if (error) {
+      alert('Failed to add partner');
+      return;
+    }
+
+    setNewPartner({ name: '', logo_url: '', website: '', description: '', partner_type: 'lifestyle', instagram: '' });
+    setShowPartnerModal(false);
+    fetchPartners();
+  };
+
+  const handleSelectPartner = (partner: Partner) => {
+    setNewEvent(ev => ({
+      ...ev,
+      is_partnership: true,
+      partner_id: partner.id,
+      partner_name: partner.name,
+      partner_logo_url: partner.logo_url || '',
+      partner_website: partner.website || '',
+      partner_type: partner.partner_type
+    }));
+  };
+
   const handleCreateEvent = async () => {
     if (!newEvent.title || !newEvent.event_date) {
       alert('Please fill in title and date');
@@ -178,6 +227,11 @@ export default function AdminEventsPage() {
         address: newEvent.address,
         max_capacity: newEvent.max_capacity ? parseInt(newEvent.max_capacity) : null,
         price: parseFloat(newEvent.price) || 0,
+        is_partnership: newEvent.is_partnership,
+        partner_name: newEvent.is_partnership ? newEvent.partner_name : null,
+        partner_logo_url: newEvent.is_partnership ? newEvent.partner_logo_url : null,
+        partner_website: newEvent.is_partnership ? newEvent.partner_website : null,
+        partner_type: newEvent.is_partnership ? newEvent.partner_type : null,
         is_public: true
       })
       .select()

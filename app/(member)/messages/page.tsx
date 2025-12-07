@@ -258,9 +258,11 @@ export default function MessagesPage() {
         .eq('id', userId)
         .single();
 
-      const convWithDetails = {
-        ...newConv,
-        other_user: otherUser
+      const convWithDetails: ConversationWithDetails = {
+        id: newConv.id,
+        created_at: newConv.created_at,
+        other_user: otherUser,
+        unread_count: 0
       };
 
       setConversations(prev => [convWithDetails, ...prev]);

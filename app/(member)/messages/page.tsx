@@ -7,10 +7,18 @@ import { Crown, ChevronLeft, Send, Image, Smile, Check, CheckCheck, MoreVertical
 import { createClient } from '@/lib/supabase-browser';
 import type { User, Conversation, Message } from '@/lib/types';
 
+interface ConversationWithDetails {
+  id: string;
+  created_at?: string;
+  other_user?: any;
+  last_msg?: any;
+  unread_count: number;
+}
+
 export default function MessagesPage() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
+  const [conversations, setConversations] = useState<ConversationWithDetails[]>([]);
+  const [selectedConversation, setSelectedConversation] = useState<ConversationWithDetails | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [loading, setLoading] = useState(true);

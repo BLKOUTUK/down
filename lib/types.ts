@@ -54,6 +54,14 @@ export interface User {
   age_range_max?: number;
   max_distance?: number;
   
+  // Sex-positive fields
+  hosting_preference?: 'can_host' | 'prefer_travel' | 'either' | 'cant_host';
+  sexual_position?: 'top' | 'bottom' | 'vers' | 'vers_top' | 'vers_bottom' | 'side';
+  sex_and_me?: string[];
+  sex_and_you?: string[];
+  last_health_checkup?: string;
+  health_checkup_reminder?: boolean;
+  
   // Verification
   is_verified?: boolean;
   verified_at?: string;

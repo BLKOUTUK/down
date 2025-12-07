@@ -88,7 +88,13 @@ export default function ProfilePage() {
     interests: [] as string[],
     age_range_min: 18,
     age_range_max: 99,
-    max_distance: 50
+    max_distance: 50,
+    // Sex-positive fields
+    hosting_preference: '',
+    sexual_position: '',
+    sex_and_me: [] as string[],
+    sex_and_you: [] as string[],
+    last_health_checkup: ''
   });
 
   useEffect(() => {

@@ -140,7 +140,13 @@ export default function ProfilePage() {
       interests: data.interests || [],
       age_range_min: data.age_range_min || 18,
       age_range_max: data.age_range_max || 99,
-      max_distance: data.max_distance || 50
+      max_distance: data.max_distance || 50,
+      // Sex-positive fields
+      hosting_preference: data.hosting_preference || '',
+      sexual_position: data.sexual_position || '',
+      sex_and_me: data.sex_and_me || [],
+      sex_and_you: data.sex_and_you || [],
+      last_health_checkup: data.last_health_checkup || ''
     });
     setLoading(false);
   };

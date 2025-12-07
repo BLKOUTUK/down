@@ -254,9 +254,20 @@ export default function AdminEventsPage() {
 
     setShowCreateModal(false);
     setNewEvent({
-      title: '', description: '', event_type: 'SOCIAL',
-      event_date: '', location: '', address: '', max_capacity: '', price: '0',
-      early_bird_price: '', early_bird_deadline: '', promo_image_url: '', is_featured: false
+      title: '',
+      description: '',
+      event_type: 'SOCIAL',
+      event_date: '',
+      location: '',
+      address: '',
+      max_capacity: '',
+      price: '0',
+      is_partnership: false,
+      partner_id: '',
+      partner_name: '',
+      partner_logo_url: '',
+      partner_website: '',
+      partner_type: ''
     });
     fetchEvents();
   };

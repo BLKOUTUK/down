@@ -282,6 +282,39 @@ export default function ProfilePage() {
     }));
   };
 
+  const toggleSexAndMe = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      sex_and_me: prev.sex_and_me.includes(value)
+        ? prev.sex_and_me.filter(v => v !== value)
+        : prev.sex_and_me.length < 3 
+          ? [...prev.sex_and_me, value]
+          : prev.sex_and_me // Max 3
+    }));
+  };
+
+  const toggleSexAndYou = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      sex_and_you: prev.sex_and_you.includes(value)
+        ? prev.sex_and_you.filter(v => v !== value)
+        : prev.sex_and_you.length < 3 
+          ? [...prev.sex_and_you, value]
+          : prev.sex_and_you // Max 3
+    }));
+  };
+
+  const getHealthCheckupStatus = () => {
+    if (!formData.last_health_checkup) return { status: 'unknown', message: 'Not recorded' };
+    const lastCheck = new Date(formData.last_health_checkup);
+    const now = new Date();
+    const monthsDiff = (now.getFullYear() - lastCheck.getFullYear()) * 12 + (now.getMonth() - lastCheck.getMonth());
+    
+    if (monthsDiff <= 3) return { status: 'good', message: 'Up to date', color: 'text-green-400' };
+    if (monthsDiff <= 6) return { status: 'due', message: 'Due soon', color: 'text-yellow-400' };
+    return { status: 'overdue', message: 'Overdue', color: 'text-red-400' };
+  };
+
   const updateLocation = () => {
     if (!navigator.geolocation || !user) return;
 

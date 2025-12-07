@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Crown, ChevronLeft, Camera, Plus, X, Loader2, Save, MapPin, Heart, Sparkles, Shield } from 'lucide-react';
+import { Crown, ChevronLeft, Camera, Plus, X, Loader2, Save, MapPin, Heart, Sparkles, Shield, Flame, Calendar, AlertCircle } from 'lucide-react';
 import { createClient } from '@/lib/supabase-browser';
 import type { User, Media } from '@/lib/types';
 
@@ -22,6 +22,38 @@ const RELATIONSHIP_STYLES = [
   { value: 'POLYAMOROUS', label: 'Polyamorous' },
   { value: 'EXPLORING', label: 'Exploring' },
   { value: 'PREFER_NOT_TO_SAY', label: 'Prefer Not to Say' }
+];
+
+const HOSTING_OPTIONS = [
+  { value: 'can_host', label: 'Can accommodate', emoji: '🏠' },
+  { value: 'prefer_travel', label: 'Prefer to travel', emoji: '🚗' },
+  { value: 'either', label: 'Either works', emoji: '🔄' },
+  { value: 'cant_host', label: "Can't accommodate", emoji: '🚫' }
+];
+
+const POSITION_OPTIONS = [
+  { value: 'top', label: 'Top', emoji: '⬆️' },
+  { value: 'bottom', label: 'Bottom', emoji: '⬇️' },
+  { value: 'vers', label: 'Vers', emoji: '↕️' },
+  { value: 'vers_top', label: 'Vers Top', emoji: '⬆️↕️' },
+  { value: 'vers_bottom', label: 'Vers Bottom', emoji: '⬇️↕️' },
+  { value: 'side', label: 'Side', emoji: '↔️' }
+];
+
+const SEX_AND_ME_OPTIONS = [
+  'Adventurous', 'Affectionate', 'Assertive', 'Attentive', 'Caring', 'Communicative',
+  'Confident', 'Creative', 'Curious', 'Dominant', 'Energetic', 'Experimental',
+  'Generous', 'Gentle', 'Intense', 'Intimate', 'Kinky', 'Passionate',
+  'Patient', 'Playful', 'Romantic', 'Sensual', 'Spontaneous', 'Submissive',
+  'Tender', 'Vocal', 'Wild'
+];
+
+const SEX_AND_YOU_OPTIONS = [
+  'Adventurous', 'Affectionate', 'Assertive', 'Attentive', 'Caring', 'Communicative',
+  'Confident', 'Creative', 'Curious', 'Dominant', 'Energetic', 'Experienced',
+  'Generous', 'Gentle', 'Intense', 'Intimate', 'Kinky', 'Masculine',
+  'Open-minded', 'Passionate', 'Patient', 'Playful', 'Romantic', 'Sensual',
+  'Spontaneous', 'Submissive', 'Tender', 'Vocal'
 ];
 
 const INTEREST_SUGGESTIONS = [

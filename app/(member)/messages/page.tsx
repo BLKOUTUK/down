@@ -133,20 +133,21 @@ export default function MessagesPage() {
           .eq('receiver_id', currentUser.id)
           .is('read_at', null);
 
+        const conv = p.conversations as any;
         return {
           id: convId,
-          ...p.conversations,
+          created_at: conv?.created_at,
           other_user: otherParticipant?.user,
           last_msg: lastMsg,
           unread_count: unreadCount || 0
-        };
+        } as ConversationWithDetails;
       })
     );
 
     // Sort by last message
     conversationsWithDetails.sort((a, b) => {
-      const dateA = a.last_msg?.created_at || a.created_at;
-      const dateB = b.last_msg?.created_at || b.created_at;
+      const dateA = a.last_msg?.created_at || a.created_at || '';
+      const dateB = b.last_msg?.created_at || b.created_at || '';
       return new Date(dateB).getTime() - new Date(dateA).getTime();
     });
 

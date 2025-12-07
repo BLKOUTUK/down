@@ -335,3 +335,35 @@ CREATE TRIGGER update_events_updated_at BEFORE UPDATE ON events
 -- Enable realtime for messages and typing indicators
 ALTER PUBLICATION supabase_realtime ADD TABLE messages;
 ALTER PUBLICATION supabase_realtime ADD TABLE conversation_participants;
+
+-- Add partnership fields to events table
+ALTER TABLE events ADD COLUMN IF NOT EXISTS is_partnership BOOLEAN DEFAULT FALSE;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS partner_name TEXT;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS partner_logo_url TEXT;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS partner_website TEXT;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS partner_type TEXT; -- lifestyle, voluntary, cultural, health, advocacy
+
+-- Create partners table for reusable partner profiles
+CREATE TABLE IF NOT EXISTS partners (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  logo_url TEXT,
+  website TEXT,
+  description TEXT,
+  partner_type TEXT NOT NULL, -- lifestyle, voluntary, cultural, health, advocacy
+  instagram TEXT,
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Insert some example Black queer UK organizations
+INSERT INTO partners (name, partner_type, description, website) VALUES
+('UK Black Pride', 'advocacy', 'Europe''s largest celebration for LGBTQ+ people of African, Asian, Caribbean, Latin American and Middle Eastern descent', 'https://ukblackpride.org.uk'),
+('Black Out UK', 'lifestyle', 'A safe space for Black gay/bi men and allies to connect and engage', 'https://blkoutuk.com'),
+('Stonewall', 'advocacy', 'LGBTQ+ rights charity campaigning for equality', 'https://stonewall.org.uk'),
+('GMFA', 'health', 'Gay men''s health charity', 'https://gmfa.org.uk'),
+('NAZ Project', 'health', 'Sexual health services for BAME communities', 'https://naz.org.uk'),
+('Opening Doors London', 'voluntary', 'Supporting LGBTQ+ people over 50', 'https://openingdoorslondon.org.uk'),
+('Queer Britain', 'cultural', 'UK''s first LGBTQ+ museum', 'https://queerbritain.org.uk')
+ON CONFLICT DO NOTHING;

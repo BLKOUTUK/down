@@ -268,7 +268,7 @@ export default function MessagesPage() {
     }
   };
 
-  const selectConversation = async (conversation: Conversation) => {
+  const selectConversation = async (conversation: ConversationWithDetails) => {
     setSelectedConversation(conversation);
     
     // Fetch messages

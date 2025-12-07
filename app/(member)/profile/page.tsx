@@ -397,18 +397,18 @@ export default function ProfilePage() {
           </div>
 
           {/* Tabs */}
-          <div className="flex border-b border-gold/20 mb-6">
-            {['photos', 'about', 'preferences'].map((tab) => (
+          <div className="flex border-b border-gold/20 mb-6 overflow-x-auto">
+            {['photos', 'about', 'intimacy', 'preferences'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 py-3 text-center font-medium capitalize transition-colors ${
+                className={`flex-1 py-3 text-center font-medium capitalize transition-colors whitespace-nowrap px-2 ${
                   activeTab === tab
                     ? 'text-gold border-b-2 border-gold'
                     : 'text-gray-400 hover:text-gold'
                 }`}
               >
-                {tab}
+                {tab === 'intimacy' ? '🔥 Intimacy' : tab}
               </button>
             ))}
           </div>

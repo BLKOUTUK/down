@@ -367,3 +367,11 @@ INSERT INTO partners (name, partner_type, description, website) VALUES
 ('Opening Doors London', 'voluntary', 'Supporting LGBTQ+ people over 50', 'https://openingdoorslondon.org.uk'),
 ('Queer Britain', 'cultural', 'UK''s first LGBTQ+ museum', 'https://queerbritain.org.uk')
 ON CONFLICT DO NOTHING;
+
+-- Sex-positive profile fields
+ALTER TABLE users ADD COLUMN IF NOT EXISTS hosting_preference TEXT; -- can_host, prefer_travel, either, cant_host
+ALTER TABLE users ADD COLUMN IF NOT EXISTS sexual_position TEXT; -- top, bottom, vers, vers_top, vers_bottom, side
+ALTER TABLE users ADD COLUMN IF NOT EXISTS sex_and_me TEXT[] DEFAULT '{}'; -- 3 descriptors about themselves
+ALTER TABLE users ADD COLUMN IF NOT EXISTS sex_and_you TEXT[] DEFAULT '{}'; -- 3 descriptors about what they want
+ALTER TABLE users ADD COLUMN IF NOT EXISTS last_health_checkup DATE;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS health_checkup_reminder BOOLEAN DEFAULT TRUE;

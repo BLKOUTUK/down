@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Crown, Users, MessageCircle, Calendar, User, Heart, Clock, MapPin, Settings, LogOut, Bell } from 'lucide-react';
+import { Crown, Users, MessageCircle, Calendar, User, Heart, Clock, MapPin, Settings, LogOut, Bell, AlertTriangle } from 'lucide-react';
 import { createClient } from '@/lib/supabase-browser';
 import type { User as UserType, TimeWindowStatus } from '@/lib/types';
 
@@ -96,9 +96,39 @@ export default function DashboardPage() {
     const day = now.getDay();
     const hour = now.getHours();
 
+    // Check for admin override
+    const override = localStorage.getItem('down_window_override');
+
+    // If override is set, use that
+    if (override === 'force_open') {
+      setWindowStatus({
+        isWithinWindow: true,
+        isOverridden: true
+      });
+      return;
+    }
+
+    if (override === 'force_closed') {
+      const nextWindowStart = new Date(now);
+      const daysUntilThursday = (4 - day + 7) % 7 || 7;
+      if (day === 4 && hour < 16) {
+        nextWindowStart.setHours(16, 0, 0, 0);
+      } else {
+        nextWindowStart.setDate(now.getDate() + daysUntilThursday);
+        nextWindowStart.setHours(16, 0, 0, 0);
+      }
+      setWindowStatus({
+        isWithinWindow: false,
+        nextWindowStart,
+        timeUntilNext: nextWindowStart.getTime() - now.getTime(),
+        isOverridden: true
+      });
+      return;
+    }
+
     // Thursday 4pm to Friday midnight
-    const isWithinWindow = 
-      (day === 4 && hour >= 16) || 
+    const isWithinWindow =
+      (day === 4 && hour >= 16) ||
       (day === 5 && hour < 24);
 
     let nextWindowStart: Date | undefined;
@@ -107,7 +137,7 @@ export default function DashboardPage() {
     if (!isWithinWindow) {
       nextWindowStart = new Date(now);
       const daysUntilThursday = (4 - day + 7) % 7 || 7;
-      
+
       if (day === 4 && hour < 16) {
         // Today is Thursday, window starts later today
         nextWindowStart.setHours(16, 0, 0, 0);
@@ -115,7 +145,7 @@ export default function DashboardPage() {
         nextWindowStart.setDate(now.getDate() + daysUntilThursday);
         nextWindowStart.setHours(16, 0, 0, 0);
       }
-      
+
       timeUntilNext = nextWindowStart.getTime() - now.getTime();
     }
 
@@ -153,7 +183,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-luxe-gradient afro-pattern">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gold/20">
+      <header className="fixed top-10 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-gold/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/dashboard" className="flex items-center space-x-2">
@@ -191,25 +221,33 @@ export default function DashboardPage() {
       </header>
 
       {/* Main Content */}
-      <main className="pt-20 pb-24 md:pb-12 px-4">
+      <main className="pt-28 pb-24 md:pb-12 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Time Window Banner */}
           {windowStatus && (
             <div className={`mb-6 p-4 rounded-xl border ${
-              windowStatus.isWithinWindow 
-                ? 'bg-green-500/10 border-green-500/30' 
+              windowStatus.isWithinWindow
+                ? 'bg-green-500/10 border-green-500/30'
                 : 'bg-purple-dark/30 border-purple/30'
             }`}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <Clock className={`h-6 w-6 ${windowStatus.isWithinWindow ? 'text-green-400' : 'text-purple-light'}`} />
                   <div>
-                    <p className={`font-semibold ${windowStatus.isWithinWindow ? 'text-green-400' : 'text-purple-light'}`}>
-                      {windowStatus.isWithinWindow ? 'Access Window Open!' : 'Access Window Closed'}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <p className={`font-semibold ${windowStatus.isWithinWindow ? 'text-green-400' : 'text-purple-light'}`}>
+                        {windowStatus.isWithinWindow ? 'Access Window Open!' : 'Access Window Closed'}
+                      </p>
+                      {windowStatus.isOverridden && (
+                        <span className="px-2 py-0.5 bg-yellow-500/20 text-yellow-400 text-xs rounded-full flex items-center gap-1">
+                          <AlertTriangle className="h-3 w-3" />
+                          Override
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-gray-400">
-                      {windowStatus.isWithinWindow 
-                        ? 'Connect with the community now' 
+                      {windowStatus.isWithinWindow
+                        ? 'Connect with the community now'
                         : `Opens in ${formatTimeUntil(windowStatus.timeUntilNext!)}`}
                     </p>
                   </div>

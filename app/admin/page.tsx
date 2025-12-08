@@ -3,18 +3,26 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Crown, Users, Clock, FileText, Calendar, LogOut, BarChart3 } from 'lucide-react';
+import { Crown, Users, Clock, FileText, Calendar, LogOut, BarChart3, ToggleLeft, ToggleRight, AlertTriangle } from 'lucide-react';
 import { createClient } from '@/lib/supabase-browser';
+
+type WindowOverride = 'none' | 'force_open' | 'force_closed';
 
 export default function AdminPage() {
   const [user, setUser] = useState<any>(null);
   const [analytics, setAnalytics] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [windowOverride, setWindowOverride] = useState<WindowOverride>('none');
   const router = useRouter();
   const supabase = createClient();
 
   useEffect(() => {
     checkAuth();
+    // Load window override from localStorage
+    const stored = localStorage.getItem('down_window_override');
+    if (stored === 'force_open' || stored === 'force_closed') {
+      setWindowOverride(stored);
+    }
   }, []);
 
   const checkAuth = async () => {
@@ -81,6 +89,15 @@ export default function AdminPage() {
   const handleLogout = () => {
     localStorage.removeItem('down_user');
     router.push('/');
+  };
+
+  const handleWindowOverride = (override: WindowOverride) => {
+    setWindowOverride(override);
+    if (override === 'none') {
+      localStorage.removeItem('down_window_override');
+    } else {
+      localStorage.setItem('down_window_override', override);
+    }
   };
 
   if (loading) {
@@ -178,6 +195,62 @@ export default function AdminPage() {
               label="Total Cohorts"
               value={analytics?.cohorts?.length ?? 0}
             />
+          </div>
+
+          {/* Time Window Override (Testing) */}
+          <div className="bg-card/80 backdrop-blur-sm border border-gold/20 rounded-xl p-6 mb-12">
+            <div className="flex items-center gap-3 mb-4">
+              <Clock className="h-6 w-6 text-gold" />
+              <h2 className="text-xl font-bold text-gold">Time Window Override (Testing)</h2>
+              {windowOverride !== 'none' && (
+                <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full flex items-center gap-1">
+                  <AlertTriangle className="h-3 w-3" />
+                  Override Active
+                </span>
+              )}
+            </div>
+            <p className="text-sm text-gray-400 mb-4">
+              Override the time window to test open/closed behavior. This affects the dashboard and browse pages.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={() => handleWindowOverride('none')}
+                className={`px-4 py-2 rounded-lg border transition-all ${
+                  windowOverride === 'none'
+                    ? 'bg-gold text-black border-gold font-bold'
+                    : 'bg-transparent text-gray-300 border-gray-600 hover:border-gold/50'
+                }`}
+              >
+                Normal (Thu 4pm - Fri midnight)
+              </button>
+              <button
+                onClick={() => handleWindowOverride('force_open')}
+                className={`px-4 py-2 rounded-lg border transition-all flex items-center gap-2 ${
+                  windowOverride === 'force_open'
+                    ? 'bg-green-500 text-black border-green-500 font-bold'
+                    : 'bg-transparent text-green-400 border-green-500/50 hover:bg-green-500/10'
+                }`}
+              >
+                <ToggleRight className="h-4 w-4" />
+                Force OPEN
+              </button>
+              <button
+                onClick={() => handleWindowOverride('force_closed')}
+                className={`px-4 py-2 rounded-lg border transition-all flex items-center gap-2 ${
+                  windowOverride === 'force_closed'
+                    ? 'bg-red-500 text-black border-red-500 font-bold'
+                    : 'bg-transparent text-red-400 border-red-500/50 hover:bg-red-500/10'
+                }`}
+              >
+                <ToggleLeft className="h-4 w-4" />
+                Force CLOSED
+              </button>
+            </div>
+            {windowOverride !== 'none' && (
+              <p className="text-xs text-yellow-400 mt-3">
+                Override is stored in browser. Visit /dashboard to see the effect.
+              </p>
+            )}
           </div>
 
           {/* Cohort Stats */}

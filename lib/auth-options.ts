@@ -1,18 +1,10 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import GoogleProvider from 'next-auth/providers/google';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import bcrypt from 'bcryptjs';
-import { prisma } from './db';
+import { supabase } from './supabase';
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-      allowDangerousEmailAccountLinking: true
-    }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -24,11 +16,14 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email }
-        });
+        // Get user by email from Supabase
+        const { data: user, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('email', credentials.email)
+          .single();
 
-        if (!user || !user.password) {
+        if (error || !user || !user.password) {
           return null;
         }
 
@@ -41,34 +36,28 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        // Update last active
+        await supabase
+          .from('users')
+          .update({ last_active: new Date().toISOString() })
+          .eq('id', user.id);
+
         return {
           id: user.id,
           email: user.email,
           name: user.name,
           role: user.role,
-          applicationStatus: user.applicationStatus
+          applicationStatus: user.application_status
         };
       }
     })
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        
-        if (account?.provider === 'google') {
-          const dbUser = await prisma.user.findUnique({
-            where: { id: user.id }
-          });
-          
-          if (dbUser) {
-            token.role = dbUser.role;
-            token.applicationStatus = dbUser.applicationStatus;
-          }
-        } else {
-          token.role = (user as any).role;
-          token.applicationStatus = (user as any).applicationStatus;
-        }
+        token.role = (user as any).role;
+        token.applicationStatus = (user as any).applicationStatus;
       }
       return token;
     },

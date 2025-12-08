@@ -88,7 +88,7 @@ export default function ProfilePage() {
     interests: [] as string[],
     age_range_min: 18,
     age_range_max: 99,
-    max_distance: 50,
+    max_distance: 10,
     // Sex-positive fields
     hosting_preference: '',
     sexual_position: '',
@@ -214,6 +214,8 @@ export default function ProfilePage() {
           .from('users')
           .update({ avatar_url: urlData.publicUrl })
           .eq('id', user.id);
+        // Update local state so avatar shows immediately
+        setUser(prev => prev ? { ...prev, avatar_url: urlData.publicUrl } : prev);
       }
     } catch (error) {
       console.error('Upload error:', error);
@@ -259,6 +261,8 @@ export default function ProfilePage() {
           .from('users')
           .update({ avatar_url: selectedMedia.url })
           .eq('id', user.id);
+        // Update local state so avatar shows immediately
+        setUser(prev => prev ? { ...prev, avatar_url: selectedMedia.url } : prev);
       }
       setMedia(prev => prev.map(m => ({ ...m, is_primary: m.id === mediaId })));
     }
@@ -734,8 +738,9 @@ export default function ProfilePage() {
                     <div>
                       <p className="text-sm text-teal-400 font-medium">Regular testing is self-care</p>
                       <p className="text-xs text-gray-400 mt-1">
-                        We recommend getting tested every 3 months if sexually active. 
-                        Find your nearest clinic at <a href="https://www.tht.org.uk/centres-and-services" target="_blank" rel="noopener noreferrer" className="text-teal-400 underline">THT</a> or 
+                        We recommend getting tested every 3 months if sexually active.
+                        Ask <a href="https://ivor.blkoutuk.com" target="_blank" rel="noopener noreferrer" className="text-gold underline font-medium">IVOR</a> to find your nearest clinic,
+                        or visit <a href="https://www.tht.org.uk/centres-and-services" target="_blank" rel="noopener noreferrer" className="text-teal-400 underline">THT</a> /
                         <a href="https://www.nhs.uk/service-search/sexual-health" target="_blank" rel="noopener noreferrer" className="text-teal-400 underline ml-1">NHS Sexual Health</a>.
                       </p>
                     </div>
@@ -780,11 +785,12 @@ export default function ProfilePage() {
                 <input
                   type="range"
                   min="1"
-                  max="100"
-                  value={formData.max_distance}
+                  max="20"
+                  value={Math.min(formData.max_distance, 20)}
                   onChange={(e) => setFormData(f => ({ ...f, max_distance: parseInt(e.target.value) }))}
                   className="w-full"
                 />
+                <p className="text-xs text-gray-500 mt-1">Greater London coverage</p>
               </div>
 
               <div className="pt-4 border-t border-gold/20">

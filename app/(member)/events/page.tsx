@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Crown, ChevronLeft, ChevronRight, Calendar, MapPin, Users, Clock, Check, Loader2, List, Grid3X3 } from 'lucide-react';
+import { Crown, ChevronLeft, ChevronRight, Calendar, MapPin, Users, Clock, Check, Loader2, List, Grid3X3, ExternalLink, Sparkles } from 'lucide-react';
 import { createClient } from '@/lib/supabase-browser';
 import type { User, Event, EventRsvp } from '@/lib/types';
 
@@ -93,7 +93,7 @@ export default function EventsPage() {
     const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 2, 0);
 
     const { data: eventsData } = await supabase
-      .from('events')
+      .from('down_events')
       .select('*')
       .gte('event_date', startOfMonth.toISOString())
       .lte('event_date', endOfMonth.toISOString())
@@ -103,13 +103,13 @@ export default function EventsPage() {
     const eventsWithRsvps = await Promise.all(
       (eventsData || []).map(async (event) => {
         const { count } = await supabase
-          .from('event_rsvps')
+          .from('down_event_rsvps')
           .select('*', { count: 'exact', head: true })
           .eq('event_id', event.id)
           .eq('status', 'going');
 
         const { data: userRsvp } = await supabase
-          .from('event_rsvps')
+          .from('down_event_rsvps')
           .select('*')
           .eq('event_id', event.id)
           .eq('user_id', currentUser.id)
@@ -134,12 +134,12 @@ export default function EventsPage() {
 
     if (event.user_rsvp) {
       await supabase
-        .from('event_rsvps')
+        .from('down_event_rsvps')
         .update({ status })
         .eq('id', event.user_rsvp.id);
     } else {
       await supabase
-        .from('event_rsvps')
+        .from('down_event_rsvps')
         .insert({
           event_id: eventId,
           user_id: currentUser.id,
@@ -424,6 +424,31 @@ export default function EventsPage() {
               )}
             </div>
           )}
+
+          {/* BLKOUT Community Events Link */}
+          <div className="mt-8 bg-gradient-to-r from-purple-900/50 to-gold/20 backdrop-blur-sm border border-gold/30 rounded-xl p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-14 h-14 bg-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Sparkles className="h-7 w-7 text-gold" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-gold mb-1">BLKOUT Community Platform</h3>
+                <p className="text-gray-300 text-sm mb-3">
+                  Discover more events, news, and resources from the wider BLKOUT community. Connect with Black queer communities across the UK.
+                </p>
+                <a
+                  href="https://blkoutuk.com/events"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gold text-black font-semibold rounded-lg hover:bg-gold-light transition-colors"
+                >
+                  <Calendar className="h-4 w-4" />
+                  Explore BLKOUT Events
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
 

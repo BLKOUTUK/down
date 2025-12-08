@@ -126,6 +126,118 @@ CREATE TABLE mediation_requests (
 | **Creative** | 🎨 | Making together | "Afrobeats Dance Class" |
 | **Political Ed** | ✊🏿 | Learning & organizing | "Reading: Sister Outsider" |
 | **Celebration** | 🎂 | Honoring community | "February Birthdays" |
+| **Discussion** | 💭 | Weekly online chat | "Active Members Check-In" |
+| **Hotseat** | 🔥 | Featured BLKOUTHUB member Q&A | "Meet the Founders" |
+| **Governance** | 📋 | Rules review & feedback | "Community Guidelines Review" |
+| **Date Night** | 💕 | Structured connection event | "Speed Dating Evening" |
+| **Pitch Night** | 💡 | Member ideas for events/travel | "What Should We Do Next?" |
+
+---
+
+### Sample Month Calendar (Cohort Active Period)
+
+```
+FEBRUARY 2026 - COHORT "GENESIS" CALENDAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WEEK 1 (Feb 2-8) - LAUNCH WEEK
+────────────────────────────────────────────────────────────
+Mon 2   📋 7pm  Community Rules Review (Start) - Online
+                "Welcome & Guidelines Walkthrough"
+
+Wed 4   💭 8pm  Weekly Discussion - Online
+                "Introductions: Who Are You Beyond Your Profile?"
+
+Thu 5   🔥 7pm  BLKOUTHUB Hotseat - Online
+                "Meet Marcus: Founder Story"
+
+Fri 6   🎉 ALL DAY - BLACK MEAT MARKET AWAY WEEKEND BEGINS
+Sat 7   🎉 BMM Away Weekend continues
+Sun 8   🎉 BMM Away Weekend closes
+
+────────────────────────────────────────────────────────────
+WEEK 2 (Feb 9-15)
+────────────────────────────────────────────────────────────
+Wed 11  💭 8pm  Weekly Discussion - Online
+                "Dating as a Black Queer Man in London"
+
+Thu 12  🔥 7pm  BLKOUTHUB Hotseat - Online
+                "Meet Darnell: Community Building"
+
+Fri 13  💕 8pm  DATE NIGHT #1 - In Person (Venue TBC)
+                "Valentine's Eve Speed Dating"
+
+────────────────────────────────────────────────────────────
+WEEK 3 (Feb 16-22)
+────────────────────────────────────────────────────────────
+Mon 16  📋 7pm  Community Rules Review (Midpoint) - Online
+                "How's It Going? Feedback Session"
+
+Wed 18  💭 8pm  Weekly Discussion - Online
+                "Navigating Intimacy & Boundaries"
+
+Thu 19  🔥 7pm  BLKOUTHUB Hotseat - Online
+                "Meet Jay: Tech & Community"
+
+Sat 21  💡 6pm  PITCH NIGHT - Online
+                "Submit Your Ideas: Events, Meetups, Travel"
+
+────────────────────────────────────────────────────────────
+WEEK 4 (Feb 23 - Mar 1)
+────────────────────────────────────────────────────────────
+Wed 25  💭 8pm  Weekly Discussion - Online
+                "Reflections: What Have You Learned?"
+
+Thu 26  🔥 7pm  BLKOUTHUB Hotseat - Online
+                "Community Spotlight: Member Feature"
+
+Fri 27  💕 8pm  DATE NIGHT #2 - In Person (Venue TBC)
+                "End of Month Mixer"
+
+Sun 1   📋 7pm  Community Rules Review (End) - Online
+                "Cohort Closeout & Feedback"
+
+        🎊 7pm  GALA LAUNCH CELEBRATION
+                "Genesis Cohort Closing Party"
+```
+
+---
+
+### Pitch Night Feature
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  💡 PITCH NIGHT - Submit Your Ideas                         │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  What would you love to see the community do?               │
+│                                                             │
+│  Category:                                                  │
+│  ( ) Event idea (workshop, party, social)                   │
+│  ( ) Meetup (casual gathering, activity)                    │
+│  ( ) Travel (group trip, away weekend)                      │
+│  ( ) Other                                                  │
+│                                                             │
+│  Your Idea:                                                 │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │ "Beach day trip to Brighton in summer..."            │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                                                             │
+│  Would you help organise?                                   │
+│  [ ] Yes, I'd co-host    [ ] Happy to help                  │
+│  [ ] Just suggesting     [ ] I'd attend                     │
+│                                                             │
+│  [ Submit Pitch ]                                           │
+│                                                             │
+│  ─────────────────────────────────────────────────────────  │
+│  🗳️ VOTE ON PITCHES                                         │
+│                                                             │
+│  🏖️ "Summer Beach Trip" - by Marcus (12 votes)              │
+│  🎮 "Gaming Tournament" - by Jay (8 votes)                  │
+│  🍳 "Cooking Class Collab" - by Darnell (15 votes)          │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
 
 #### In-Event Features (for Away Weekend)
 
@@ -324,6 +436,23 @@ CREATE TABLE cohort_themes (
 | Cohort rotation | Not needed for one event |
 | Full event programming | Build after learning from BMM |
 | Skin customization | Nice but not essential |
+| **Private media albums** | Time-limited intimate photo sharing |
+| **Media moderation dashboard** | Admin tools for content review |
+| **Settings page** | Account, privacy, notifications, blocked users |
+| **Community page** | Guidelines, values, resources, safety info |
+| **Buddy system** | Pair up for safety at events/meetups, check-in alerts |
+| **Constructive feedback prompts** | Post-interaction feedback to encourage dialogue |
+| **Endorsements** | Display up to 3 endorsements on profile drawn from peer feedback |
+| **Cohort opt-in flow** | Process for members to opt into next active cohort rotation |
+| **Weekend/Event tickets** | Opt-in for special event access (e.g., BMM Away Weekend) |
+| **Traveller profiles** | Temporary location mode for visitors/travelling members |
+| **Traveller Experiences** | Premium upsell for Black queer tourists: member-led scene tours, curated event+accommodation packages, immersive local experiences. Also provides novelty for active DOWN members through hosted experiences and city guide features. Revenue opportunity through booking commissions and experience hosting fees. |
+| **Member-hosted meetups** | Members can propose/host casual gatherings (pre-drinks, cinema, etc.) |
+| **Party hosting** | Host private parties with invite lists, RSVP, location sharing |
+| **BLKOUT promotions** | Rotating upsells to BLKOUT engagement/membership tiers |
+| **Partner discounts** | Curated partner offers (paid/in-kind) benefiting community |
+| **Tiered window access** | Extended browse window, scheduled DMs, fallow member access |
+| **Weekly check-in/status** | Share week updates & weekend plans during down-time |
 
 ---
 
@@ -512,8 +641,449 @@ For an away weekend specifically:
 
 ---
 
-*Document Version: 2.0*
-*Last Updated: 2025-12-07*
+## Part 6: v1.1 Features (Post-BMM)
+
+### Private Media Albums (Intimate Photo Sharing)
+
+Users can share private/intimate photos with time-limited access to specific members.
+
+#### Storage Structure
+```
+profile-media/
+├── {user_id}/
+│   ├── public/          # Profile photos (visible to all members)
+│   │   └── *.jpg
+│   └── private/         # Intimate photos (access by invitation only)
+│       └── *.jpg
+```
+
+#### Access Control Model
+
+| Role | Public Folder | Private Folder |
+|------|---------------|----------------|
+| Owner | Full access | Full access |
+| Invited user | View only | View only (time-limited) |
+| Other members | View only | No access |
+| Moderators | View + Delete | View + Delete (for moderation) |
+
+#### Database Schema
+```sql
+-- Private media access grants
+CREATE TABLE private_media_access (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  owner_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  granted_to_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  expires_at TIMESTAMPTZ NOT NULL,  -- e.g., 24 hours from grant
+  created_at TIMESTAMPTZ DEFAULT now(),
+  revoked BOOLEAN DEFAULT false,
+  revoked_at TIMESTAMPTZ,
+  UNIQUE(owner_id, granted_to_id)
+);
+
+-- Index for quick access checks
+CREATE INDEX idx_private_media_access_granted
+ON private_media_access(granted_to_id, expires_at)
+WHERE revoked = false;
+
+-- Media reports for moderation
+CREATE TABLE media_reports (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  media_id UUID REFERENCES media(id) ON DELETE CASCADE,
+  reporter_id UUID REFERENCES users(id) ON DELETE SET NULL,
+  reason TEXT NOT NULL,  -- 'inappropriate', 'misleading', 'non_consensual', 'other'
+  details TEXT,
+  status TEXT DEFAULT 'pending',  -- 'pending', 'actioned', 'dismissed'
+  moderator_id UUID REFERENCES users(id),
+  action_taken TEXT,  -- 'removed', 'warning_issued', 'account_suspended', 'none'
+  moderator_notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  reviewed_at TIMESTAMPTZ
+);
+
+-- Add is_private flag to media table
+ALTER TABLE media ADD COLUMN is_private BOOLEAN DEFAULT false;
+```
+
+#### UI Flow: Sharing Private Album
+```
+┌─────────────────────────────────────────────────────────────┐
+│  🔒 Share Private Album with Marcus                         │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  You have 3 private photos                                  │
+│                                                             │
+│  ⏱️ Access expires after:                                   │
+│  [ 1 hour ] [ 24 hours ✓ ] [ 48 hours ] [ 1 week ]         │
+│                                                             │
+│  [ 🔓 Share Access ]                                        │
+│                                                             │
+│  ⚠️ Marcus will be notified. You can revoke access          │
+│  anytime from your profile settings.                        │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### UI Flow: Reporting Media
+```
+┌─────────────────────────────────────────────────────────────┐
+│  🚩 Report This Photo                                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Why are you reporting this?                                │
+│                                                             │
+│  [ ] Inappropriate content                                  │
+│  [ ] Misleading/catfish                                     │
+│  [ ] Used without consent                                   │
+│  [ ] Other                                                  │
+│                                                             │
+│  Additional details (optional):                             │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │                                                      │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                                                             │
+│  [ Submit Report ]                                          │
+│                                                             │
+│  Reports are reviewed by community stewards within 24h.     │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Part 7: Year 1 Roadmap (Feb 2026 - Feb 2027)
+
+### Strategic Principles
+
+| Principle | Implementation |
+|-----------|----------------|
+| **Community-powered operations** | Volunteers as skills development, not cost centre |
+| **Values-aligned partnerships** | Outsavvy over Stripe, community over extraction |
+| **Training before features** | Buddy system needs culture before code |
+| **Match focus over distraction** | One conversation at a time, not endless scrolling |
+| **Realtime for intimacy** | Messaging must be immediate, not email-paced |
+
+---
+
+### Phase 1: Foundation & Safety (Feb-Mar 2026)
+*Post-BMM learnings, trust infrastructure*
+
+| Feature | Effort | Impact | Notes |
+|---------|--------|--------|-------|
+| **Settings page** | 3 days | Essential | Account controls, privacy, notifications |
+| **Community page** | 3 days | Essential | Guidelines, values, resources, safety info |
+| **Steward dashboard** | 5 days | Critical | Moderation queue, content review tools |
+| **Realtime messaging upgrade** | 5 days | High | Supabase Realtime, typing indicators, read receipts |
+| **Volunteer role badges** | 2 days | Medium | Recognition system for stewards |
+| **Functional colour system** | 1 day | Polish | Crown status indicator, cohort colour foundations |
+
+**Phase 1 Total:** ~4 weeks | £0 additional cost
+
+**Community Development:**
+- BMM debrief and steward recruitment (3-5 candidates)
+- First steward training cohort
+
+---
+
+### Phase 2: Intimacy & Trust (Apr-May 2026)
+*Differentiating features, safety culture*
+
+| Feature | Effort | Impact | Notes |
+|---------|--------|--------|-------|
+| **Private media albums** | 2 weeks | Killer feature | Time-limited intimate photo sharing |
+| **Disappearing messages** | 3 days | High | View-once photos, screenshot detection |
+| **Photo sharing in chat** | 4 days | Essential | Camera/gallery integration |
+| **Constructive feedback prompts** | 3 days | Medium | Post-interaction dialogue encouragement |
+| **Endorsements (3 max)** | 4 days | Medium | Peer-sourced trust signals |
+
+**Phase 2 Total:** ~5 weeks | ~£60/year storage
+
+**Community Development:**
+- Navigator training (mediation) - 2-3 trained
+- Buddy system pilot preparation
+- BLKOUTHUB "Looking Out" course development
+
+---
+
+### Phase 3: Engagement & Events (Jun-Aug 2026)
+*Community-led activity, revenue foundations*
+
+| Feature | Effort | Impact | Notes |
+|---------|--------|--------|-------|
+| **Member-hosted meetups** | 1.5 weeks | High | Members propose casual gatherings |
+| **Weekend/event tickets** | 1 week | Revenue | Outsavvy integration (1.5% vs Stripe 2.9%) |
+| **Cohort opt-in flow** | 4 days | Required | June cohort rotation support |
+| **Buddy system (trained access)** | 1 week | High | Requires BLKOUTHUB course completion |
+| **Voice notes** | 4 days | Differentiator | Audio messages |
+| **Match messaging always-on** | 2 days | Retention | Matches can chat outside window |
+
+**Phase 3 Total:** ~6 weeks | Outsavvy fees (~1.5%)
+
+**Community Development:**
+- Event Host workshop (4-6 trained)
+- Buddy Coordinator onboarding (3-4 coordinators)
+- BLKOUTHUB course launch, facilitated cohort
+
+---
+
+### Phase 4: Growth & Revenue (Sep-Nov 2026)
+*Monetization, partnerships, sustainability*
+
+| Feature | Effort | Impact | Notes |
+|---------|--------|--------|-------|
+| **Partner discounts portal** | 1 week | Revenue positive | Curated partner offers |
+| **BLKOUT promotions** | 4 days | Cross-platform | Engagement/membership tier upsells |
+| **Tiered window access** | 1 week | Premium revenue | Extended access for subscribers |
+| **Party hosting** | 1.5 weeks | Advanced | Private parties with invite management |
+| **Traveller profiles** | 1 week | Expansion | Temporary location mode |
+| **Location sharing (time-limited)** | 4 days | Safety | For meetup coordination with buddy alert |
+
+**Phase 4 Total:** ~6 weeks | Revenue positive
+
+**Community Development:**
+- Cross-training (steward ↔ navigator)
+- New cohort steward recruitment cycle
+- Community of practice gathering
+
+---
+
+### Phase 5: Innovation (Dec 2026 - Year 2)
+*Advanced features, geographic expansion*
+
+| Feature | Effort | Impact | Notes |
+|---------|--------|--------|-------|
+| **Traveller Experiences** | 2 weeks | Premium upsell | Scene tours, accommodation packages |
+| **Video chat (WebRTC)** | 3 weeks | High effort | Real-time video calls |
+| **Weekly check-in/status** | 4 days | Engagement | Off-window activity |
+| **Group chats** | 1 week | Meetup coordination | For event attendee groups |
+
+**Community Development:**
+- Annual review & recognition
+- Year 2 planning & succession
+
+---
+
+### Community-Powered Operations Model
+
+#### Volunteer Roles
+
+| Role | Training | Commitment | Skills Developed |
+|------|----------|------------|------------------|
+| **Community Stewards** | 2hr workshop + shadowing | 2-4 hrs/week | Content policy, safeguarding, trauma-informed practice |
+| **Conflict Navigators** | Half-day workshop + role-play | On-call rotation | Active listening, de-escalation, restorative practice |
+| **Event Hosts** | Workshop + mentored practice | 1-2 events/quarter | Planning, risk assessment, facilitation |
+| **Buddy Coordinators** | BLKOUTHUB course | 1 hr/week | Peer support, check-in protocols |
+
+#### Peripatetic Resource Strategy
+
+```
+Each cohort rotation → Recruit 2-3 volunteers
+                     ↓
+Volunteers trained → Join service pool
+                     ↓
+Fallow members → Stay engaged through roles
+                     ↓
+Growing bench → Distributed knowledge, no single point of failure
+```
+
+#### Cost Comparison
+
+| Model | Annual Cost |
+|-------|-------------|
+| **Traditional (paid staff)** | £30-45k |
+| **Community-powered** | £1-2k (training + recognition) |
+| **Community returns** | Skills transfer, ownership, retention, leadership pipeline |
+
+---
+
+### Buddy System Implementation
+
+#### Graduated Rollout
+
+| Stage | Timing | Approach |
+|-------|--------|----------|
+| **Pilot** | BMM Weekend (Feb) | 10-15 pairs, in-person workshop, high-touch support |
+| **Course Development** | Mar | BLKOUTHUB "Looking Out" course creation |
+| **Facilitated Cohort** | Apr-May | 20-30 members, async course + weekly calls |
+| **Self-Service** | Jun+ | Course prerequisite, in-app matching, peer community |
+
+#### Platform Gating
+
+```
+Buddy feature access requires:
+✓ BLKOUTHUB "Looking Out" course completion
+✓ Annual re-certification
+```
+
+#### Course Modules
+
+1. Why Buddying? (30 min) - History, harm reduction, community care
+2. The Buddy Agreement (45 min) - Expectations, boundaries, check-in rhythms
+3. Check-In Skills (45 min) - Questions, listening, distress signals
+4. When Things Go Sideways (30 min) - Escalation, limits, self-care
+5. Being a Good Buddy (30 min) - Reciprocity, boundaries, ending well
+
+---
+
+### Messaging Strategy
+
+#### Window Rules (Revised)
+
+| Status | Feature Availability |
+|--------|---------------------|
+| **Window OPEN** (Thu 4pm - Fri midnight) | Browse, Like, Message anyone, All features |
+| **Window CLOSED** | Browse locked, Like locked, **Match messaging ALWAYS ON**, View match profiles |
+
+**Rationale:** Once matched, the connection is established. Killing conversations mid-flow is user-hostile. Discovery stays window-locked for intentional scarcity.
+
+#### Realtime Features Roadmap
+
+| Phase | Features |
+|-------|----------|
+| **Launch** | Polling chat, text-only |
+| **Phase 1** | Supabase Realtime, typing indicators, read receipts |
+| **Phase 2** | Photo sharing, disappearing messages |
+| **Phase 3** | Voice notes, quick intimacy prompts |
+| **Phase 4** | Location sharing (with buddy integration) |
+| **Phase 5** | Video chat |
+
+#### Sex-Positive Messaging
+
+```
+Quick Prompts:
+[🔥 You're hot]  [📍 You free tonight?]
+[👀 Show me more] [🏠 Can host]
+[🚗 Can travel]   [💬 Let's chat first]
+
+Disappearing Photos:
+- View once
+- 24-hour expiry option
+- Screenshot detection alert
+
+Location Sharing:
+- 15 min / 1 hour / until turned off
+- Automatic buddy notification prompt
+```
+
+---
+
+### Functional Colour System
+
+Colour as visual language - status at a glance, cohort identity, not vanity theming.
+
+#### Crown Status Indicator
+
+| Crown Colour | Meaning |
+|--------------|---------|
+| **Gold** | Window OPEN (active) |
+| **Purple** | Window opening soon (< 1 hour) |
+| **Grey** | Window CLOSED |
+
+#### Cohort Colour Palette
+
+| Cohort | Colour | Hex | Use |
+|--------|--------|-----|-----|
+| **Alpha** | Deep Purple | `#7C3AED` | Chat bubbles, profile accents, badges |
+| **Beta** | Teal | `#14B8A6` | Chat bubbles, profile accents, badges |
+| **Gamma** | Amber | `#F59E0B` | Chat bubbles, profile accents, badges |
+| **Delta** | Rose | `#F43F5E` | Chat bubbles, profile accents, badges |
+| **Your messages** | Gold | `#D4AF37` | Always your brand colour |
+
+#### Phased Implementation
+
+| Phase | Elements | Effort |
+|-------|----------|--------|
+| **Phase 1** | Crown status indicator | 30 min |
+| **Phase 2** | Chat bubble cohort colours, typing indicator colours | 2 hours |
+| **Phase 3** | Profile card cohort accents, event badges | 2 hours |
+| **Phase 4** | Match notifications, read receipt colours | 1 hour |
+
+#### Visual Language Summary
+
+```
+Gold      → You / Your actions / Window open
+Purple    → Alpha cohort / Premium / Closing soon
+Teal      → Beta cohort
+Amber     → Gamma cohort
+Rose      → Delta cohort
+Grey      → Inactive / Closed / Unavailable
+Green     → Available / Online / Confirmed
+Red       → Alert / Urgent / Declined
+```
+
+---
+
+### Partnership Strategy
+
+#### Values-Aligned Partnerships
+
+| Use Case | Extractive Option | Community Option |
+|----------|-------------------|------------------|
+| **Event tickets** | Stripe (2.9%) | **Outsavvy (1.5%)** |
+| **Donations** | GoFundMe (10.9%) | Open Collective (0%) |
+| **Memberships** | Patreon (8-12%) | Ko-fi (0%) or direct |
+
+#### Outsavvy Partnership Model
+
+- Embed ticketing within DOWN events page
+- Target: 1-1.5% fees or waived for community events
+- Cross-promotion to their LGBTQ+ audience
+- "DOWN Tickets powered by Outsavvy"
+
+---
+
+### Year 1 Cost Summary
+
+| Phase | Dev Weeks | Cost | Revenue |
+|-------|-----------|------|---------|
+| Phase 1 (Feb-Mar) | 4 | £0 | - |
+| Phase 2 (Apr-May) | 5 | £60 storage | - |
+| Phase 3 (Jun-Aug) | 6 | Outsavvy 1.5% | Ticket sales |
+| Phase 4 (Sep-Nov) | 6 | £0 | Partner revenue, premium tiers |
+| Phase 5 (Dec-Feb) | 4 | £0 | Traveller experiences |
+| **Total** | **~25 weeks** | **~£300** | **Revenue positive by Q4** |
+
+---
+
+### Year 1 Training Calendar
+
+| Month | Focus | Volunteers Developed |
+|-------|-------|---------------------|
+| **Feb** | BMM debrief, steward recruitment | 3-5 candidates |
+| **Mar** | Steward training (moderation) | 3-5 trained |
+| **Apr** | Navigator training (mediation) | 2-3 trained |
+| **May** | Event Host workshop | 4-6 trained |
+| **Jun** | Buddy Coordinator onboarding | 3-4 coordinators |
+| **Jul** | Advanced steward training | Level-up existing |
+| **Aug** | Cross-training | Multi-skilled volunteers |
+| **Sep** | New cohort recruitment | Cycle repeats |
+| **Oct** | Community of practice | Knowledge sharing |
+| **Nov** | Annual review & recognition | Retention |
+| **Dec** | Year 2 planning | Succession |
+
+---
+
+### Infrastructure
+
+| Item | Timing | Impact |
+|------|--------|--------|
+| **Migrate to Coolify/Hostinger** | Post Phase 1 | Saves ~£200/year at scale |
+| **Supabase Pro upgrade** | When >200 concurrent | ~£25/month for realtime |
+
+---
+
+## Part 8: Deferred Features (Year 2+)
+
+| Feature | Notes |
+|---------|-------|
+| **Full realtime infrastructure** | Matrix/Element if scale demands |
+| **International expansion** | After UK model proven |
+| **Native mobile apps** | PWA sufficient for Year 1 |
+| **Advanced theming** | User-selectable colour schemes beyond functional system |
+
+---
+
+*Document Version: 2.3*
+*Last Updated: 2025-12-08*
 *Prepared by: SuperClaude (🎯 Strategist + 🌍 Advocate)*
 *For: BLKOUT UK Community Cooperative*
 
@@ -523,5 +1093,7 @@ For an away weekend specifically:
 ✊🏿 By Us, For Us
 🤝 Mediation over exclusion
 💛 Community culture, co-created
+🎓 Skills development, not just features
+💬 Realtime connection, intentional focus
 🎉 See you at Black Meat Market!
 ```

@@ -193,4 +193,5 @@ export interface TimeWindowStatus {
   nextWindowEnd?: Date;
   currentWindowEnd?: Date;
   timeUntilNext?: number;
+  isOverridden?: boolean;
 }
